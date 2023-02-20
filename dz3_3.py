@@ -3,29 +3,29 @@
 Пример:
 - [1.1, 1.2, 3.1, 5, 10.01] => 0.19 """
 
-list_new = []
-numbers_product = 1
+int_list = []
+fract_list = []
+
 number_list = list(map(float,input('Enter the elements of the list separated by a space: ').split()))
 print(f'Entered list: {number_list}')
 
-for i in range (0, len(number_list)):
-    list_new.append(number_list[i] % 1)
+for i in range(len(number_list)):
+    int_list.append(number_list[i]//1)
+    fract_list.append(round(number_list[i] - int_list[i], 6))
 
-print(list_new)
+maxi = 0
+mini = 1
+diff = 0
 
-max_el = list_new[0]
-i = 0
-k = 0
-min_el = list_new[0]
-for j in range(0, len(list_new)):
-    while max_el <= list_new[i]:
-        max_el = list_new[i]
-        i += 1
-for j in range(0, len(list_new)):
-    while min_el >= list_new[k]:
-        min_el = list_new[k]
-        k += 1
+for i in range(len(fract_list)):
+    if fract_list[i] != 0:
+        if fract_list[i] > maxi:
+            maxi = fract_list[i]
+        if fract_list[i] < mini:
+            mini = fract_list[i]
 
-print(min_el)
-print(max_el)
-
+diff = round(maxi - mini, 5)
+if diff == -1:
+    print('all numbers are integer')   
+else:
+    print(f'difference between max and min of the fractional part: {diff}')
